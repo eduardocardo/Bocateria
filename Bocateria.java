@@ -22,10 +22,10 @@ public class Bocateria
      */
     public Bocateria()
     {
-       primeraPersonaEnLaCola = null;
-       facturacionTotal = 0;
-       clientesDespachados = new HashMap<Integer,Cliente>();
-       
+        primeraPersonaEnLaCola = null;
+        facturacionTotal = 0;
+        clientesDespachados = new HashMap<Integer,Cliente>();
+
     }
 
     /**
@@ -44,11 +44,29 @@ public class Bocateria
         }
         else //ya hay alguien en cola
         {
-            //el cliente que esta en cola guarda quien es el cliente que tiene detras
-            primeraPersonaEnLaCola.setSiguienteEnLaCola(cliente);
-            //se pregunta quien es el siguiente y se almacena esa respuesta en 
-            //la posicion primera de la cola
-            primeraPersonaEnLaCola =primeraPersonaEnLaCola.siguienteEnLaCola();
+            
+            if(primeraPersonaEnLaCola.siguienteEnLaCola() != null)
+            {
+                Cliente nuevo = primeraPersonaEnLaCola.siguienteEnLaCola();
+                nuevo.setSiguienteEnLaCola(cliente);
+                primeraPersonaEnLaCola.setSiguienteEnLaCola(nuevo);
+            }
+            else
+            {
+                primeraPersonaEnLaCola.setSiguienteEnLaCola(cliente);
+            }
+
+            
+            
         }
+    }
+
+    /**
+     * Metodo que visualiza por pantalla los datos de los clientes que estan
+     * en cola
+     */
+    public void visualizaDatosClientesEnCola()
+    {
+
     }
 }
