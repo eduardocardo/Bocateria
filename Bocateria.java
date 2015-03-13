@@ -97,4 +97,23 @@ public class Bocateria
        //avanza la cola
        primeraPersonaEnLaCola = primeraPersonaEnLaCola.siguienteEnLaCola(); 
     }
+    
+    /**
+     * 
+     */
+    public void datosDeLaBocateriaEnLaActualidad()
+    {
+       
+        System.out.println("Facturacion actual : " + facturacionTotal);
+        System.out.println("Estado de la cola . ");
+        Cliente siguienteCliente = primeraPersonaEnLaCola.siguienteEnLaCola();                   
+       for(int i =0;i < Cliente.numeroClienteActual -1;i++)
+       {
+           
+           System.out.println(siguienteCliente.toString() + "("  
+                          + (siguienteCliente.getNumeroDeBocadillos()*PRECIO_BOCADILLO) 
+                          + " euros)");
+           siguienteCliente = siguienteCliente.siguienteEnLaCola();               
+       }
+    }
 }
