@@ -15,7 +15,7 @@ public class Cliente
     private int numeroDeBocadillos;
     //variable de clase que indica el numero de cliente que tiene el cliente
     //en funcion de los otros cliente
-    private static int numeroClienteActual = 0;
+    public static int numeroClienteActual = 0;
     /**
      * Constructor de la clase cliente
      * @param numDeBocadillos es el numero de bocadillos que pide el cliente

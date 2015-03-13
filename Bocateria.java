@@ -25,6 +25,7 @@ public class Bocateria
         primeraPersonaEnLaCola = null;
         facturacionTotal = 0;
         clientesDespachados = new HashMap<Integer,Cliente>();
+        
 
     }
 
@@ -55,9 +56,7 @@ public class Bocateria
             {
                 primeraPersonaEnLaCola.setSiguienteEnLaCola(cliente);
             }
-
-            
-            
+                        
         }
     }
 
@@ -68,5 +67,34 @@ public class Bocateria
     public void visualizaDatosClientesEnCola()
     {
 
+       System.out.println(primeraPersonaEnLaCola.toString() + "("  
+                          + (primeraPersonaEnLaCola.getNumeroDeBocadillos()*PRECIO_BOCADILLO) 
+                          + " euros)");
+       Cliente siguienteCliente = primeraPersonaEnLaCola.siguienteEnLaCola();                   
+       for(int i =0;i < Cliente.numeroClienteActual -1;i++)
+       {
+           
+           System.out.println(siguienteCliente.toString() + "("  
+                          + (siguienteCliente.getNumeroDeBocadillos()*PRECIO_BOCADILLO) 
+                          + " euros)");
+           siguienteCliente = siguienteCliente.siguienteEnLaCola();               
+       }
+    }
+    
+    /**
+     * Metodo que despacha al primer cliente de la cola,aumenta la facturacion de la caja
+     */
+    public void despacharClienteActual()
+    {
+        //se crea un arrayList de tipo Integer para almacenar el numero de cliente de cada cliente
+        ArrayList<Integer> inter = new ArrayList<Integer>();
+        //se añade ese numero al arrayList
+        inter.add(primeraPersonaEnLaCola.getNumeroCliente());
+        //se aumenta la facturacion
+        facturacionTotal += primeraPersonaEnLaCola.getNumeroDeBocadillos()*PRECIO_BOCADILLO;
+        //introducimos en el HashMap el cliente despachado
+       clientesDespachados.put(inter.get(0),primeraPersonaEnLaCola.siguienteEnLaCola());
+       //avanza la cola
+       primeraPersonaEnLaCola = primeraPersonaEnLaCola.siguienteEnLaCola(); 
     }
 }
